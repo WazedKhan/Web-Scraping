@@ -12,15 +12,15 @@ soup = BeautifulSoup(source.content,'html.parser')
 print('Looking For info ... .')
 info = soup.find_all("div", class_="_2pi5LC col-12-12")
 for i in info:
-    fuck = i.find('div', attrs={'class':'_4rR01T'})
+    title = i.find('div', attrs={'class':'_4rR01T'})
     rateing = i.find('div', class_ = '_3LWZlK')
     price = i.find('div', class_= '_30jeq3 _1_WHN1')
-    if None in (fuck, rateing, price):
+    if None in (title, rateing, price):
         continue
-    products.append(fuck.text)
+    products.append(title.text)
     prices.append(price.text)
     ratings.append(rateing.text)
-df = pd.DataFrame({'Product Name':products,'Price':prices,'Rating':ratings}) 
-#df.to_csv('products.csv', index=False, encoding='utf-8')
+df = pd.DataFrame({'Product Name':products,'Price':prices,'Rating':ratings})
+df.to_csv('products.csv', index=False, encoding='utf-8')
 print()
 print(df.head)
